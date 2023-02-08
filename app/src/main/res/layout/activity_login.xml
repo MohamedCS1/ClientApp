@@ -21,11 +21,6 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start|center"
-                android:src="@drawable/ic_back"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +58,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editTextUsername"
+                android:id="@+id/editTextEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_person"
@@ -71,7 +66,8 @@
                 android:drawablePadding="@dimen/_5sdp"
                 android:backgroundTint="@color/yellow"
                 android:textColorHint="#80FFFFFF"
-                android:hint="Username"/>
+                android:textColor="@color/white"
+                android:hint="Email"/>
 
 
             <EditText
@@ -82,6 +78,8 @@
                 android:drawableTint="@color/white"
                 android:drawablePadding="@dimen/_5sdp"
                 android:backgroundTint="@color/yellow"
+                android:inputType="textPassword"
+                android:textColor="@color/white"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:textColorHint="#80FFFFFF"
                 android:hint="Password"/>
@@ -109,13 +107,12 @@
             android:outlineAmbientShadowColor="@color/black"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_50sdp"
-            app:cardElevation="@dimen/_15sdp"
-            >
+            app:cardElevation="@dimen/_3sdp" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Log in"
+                android:text="Log In"
                 android:textStyle="bold"
                 android:layout_gravity="center"
                 android:textSize="@dimen/_20ssp"
