@@ -1,6 +1,5 @@
 package com.example.clientapplication
 
-import android.app.Activity
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
@@ -17,17 +16,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
-import com.ssw.linkedinmanager.dto.LinkedInAccessToken
-import com.ssw.linkedinmanager.dto.LinkedInEmailAddress
-import com.ssw.linkedinmanager.dto.LinkedInUserProfile
-import com.ssw.linkedinmanager.events.LinkedInManagerResponse
-import com.ssw.linkedinmanager.ui.LinkedInRequestManager
 import kotlinx.coroutines.*
 
 
-class LoginActivity : AppCompatActivity(),LinkedInManagerResponse {
+class LoginActivity : AppCompatActivity() {
 
-    private lateinit var linkedInRequestManager: LinkedInRequestManager
 
     private lateinit var oneTapClient: SignInClient
 
@@ -55,14 +48,7 @@ class LoginActivity : AppCompatActivity(),LinkedInManagerResponse {
 
         auth = FirebaseAuth.getInstance()
 
-         linkedInRequestManager = LinkedInRequestManager(
-            this,
-            this,
-            "78gswwv0yxx5ab",
-            "MoBGNiguQhKjaQoC",
-            "https://www.linkedin.com/developers/tools/oauth/redirect",
-            true
-        )
+
 
         binding.buttonSingUp.setOnClickListener {
             startActivity(Intent(this, SingUpActivity::class.java))
@@ -72,9 +58,7 @@ class LoginActivity : AppCompatActivity(),LinkedInManagerResponse {
             googleAuth()
         }
 
-        binding.buttonLinkedin.setOnClickListener {
-            linkedInRequestManager.showAuthenticateView(LinkedInRequestManager.MODE_EMAIL_ADDRESS_ONLY)
-        }
+
 
         binding.buttonLogIn.setOnClickListener {
             logInWithEmailAndPassword()
@@ -278,44 +262,5 @@ class LoginActivity : AppCompatActivity(),LinkedInManagerResponse {
         }
     }
 
-    override fun onGetAccessTokenFailed() {
-        Toast.makeText(this ,"something went wrong try again" ,Toast.LENGTH_SHORT).show()
-    }
 
-    override fun onGetAccessTokenSuccess(linkedInAccessToken: LinkedInAccessToken?) {
-        linkedInAccessToken?.access_token
-        Toast.makeText(this ,"getting access token done" ,Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onGetCodeFailed() {
-        Toast.makeText(this ,"onGetCodeFailed" ,Toast.LENGTH_SHORT).show()
-        return
-    }
-
-    override fun onGetCodeSuccess(code: String?) {
-        Toast.makeText(this ,"$code" ,Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onGetProfileDataFailed() {
-        Toast.makeText(this ,"onGetProfileDataFailed" ,Toast.LENGTH_SHORT).show()
-        return
-    }
-
-    override fun onGetProfileDataSuccess(linkedInUserProfile: LinkedInUserProfile?) {
-        linkedInUserProfile?.imageURL
-        linkedInUserProfile!!.userName.firstName.localized.en_US
-        linkedInUserProfile.userName.lastName.localized.en_US
-        linkedInUserProfile.userName.id
-        linkedInRequestManager.dismissAuthenticateView()
-    }
-
-    override fun onGetEmailAddressFailed() {
-        return
-    }
-
-    override fun onGetEmailAddressSuccess(linkedInEmailAddress: LinkedInEmailAddress?) {
-        Toast.makeText(this ,"${linkedInEmailAddress?.emailAddress}" ,Toast.LENGTH_SHORT).show()
-        linkedInRequestManager.dismissAuthenticateView()
-
-    }
 }
