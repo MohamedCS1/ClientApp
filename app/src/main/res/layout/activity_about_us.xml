@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutUsActivity"
+    android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/logo"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E9 Production the growing demand of professional, creative and cutting-edge solutions that address real-world communication, event production and challenges.\n\n\nOur expert team of consultants has extensive knowledge of local market, access to the most modern technologies available for production and a highly skilled creative team.\n\n\nAt E9 Production our aim is to excel in enabling our clients to excel., we meticulously manage, direct and lead all aspects of our client's communication, production and event needs to positively impact their brand and facilitate success."
+        android:layout_margin="@dimen/_10sdp"
+        android:textStyle="bold"
+        android:textSize="@dimen/_12ssp"
+        android:gravity="center"/>
+
+
+</LinearLayout>

@@ -18,7 +18,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:src="@drawable/ic_back"/>
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageViewPhotoProfile"
+        android:id="@+id/userPhotoProfile"
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_20sdp"
@@ -26,12 +26,13 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/temp_photo_profile"
+        android:src="@drawable/ic_add_image"
         app:civ_border_color="@color/white"
         android:layout_gravity="center|top"
         app:civ_border_width="@dimen/_3sdp" />
 
     <TextView
+        android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Basil Ashoury"
@@ -41,6 +42,7 @@
         android:textStyle="bold"/>
 
     <TextView
+        android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="email.example.com"

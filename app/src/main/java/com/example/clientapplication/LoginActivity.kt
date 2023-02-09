@@ -48,8 +48,6 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-
-
         binding.buttonSingUp.setOnClickListener {
             startActivity(Intent(this, SingUpActivity::class.java))
         }
@@ -58,13 +56,19 @@ class LoginActivity : AppCompatActivity() {
             googleAuth()
         }
 
-
-
         binding.buttonLogIn.setOnClickListener {
             logInWithEmailAndPassword()
         }
 
+    }
 
+    override fun onResume() {
+        if (auth.currentUser != null)
+        {
+            finish()
+            startActivity(Intent(this ,MainActivity::class.java))
+        }
+        super.onResume()
     }
 
     fun logInWithEmailAndPassword()
