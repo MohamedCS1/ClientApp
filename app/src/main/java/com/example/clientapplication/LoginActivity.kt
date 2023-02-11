@@ -211,7 +211,7 @@ class LoginActivity : AppCompatActivity() {
                 val idToken = credential.googleIdToken
                 val username = credential.displayName
                 val password = credential.password
-                val email = auth.currentUser?.email ?: "No email to display"
+
                 val photoProfileUri = credential.profilePictureUri
 
                 val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
@@ -223,7 +223,7 @@ class LoginActivity : AppCompatActivity() {
                             if (document.exists()) {
                                 currentUserDocRef.update(
                                     mapOf(
-                                        "email" to email,
+                                        "email" to (auth.currentUser?.email ?: "No email to display"),
                                         "name" to username,
                                         "imagePath" to photoProfileUri.toString(),
                                         "uid" to currentUser?.uid
@@ -240,7 +240,7 @@ class LoginActivity : AppCompatActivity() {
                             } else {
                                 currentUserDocRef.set(
                                     mapOf(
-                                        "email" to email,
+                                        "email" to (auth.currentUser?.email ?: "No email to display"),
                                         "name" to username,
                                         "imagePath" to photoProfileUri.toString(),
                                         "uid" to currentUser?.uid

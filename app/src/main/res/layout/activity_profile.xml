@@ -22,11 +22,8 @@
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_add_image"
+        android:background="@drawable/ic_profile"
+        android:backgroundTint="@color/white"
         app:civ_border_color="@color/white"
         android:layout_gravity="center|top"
         app:civ_border_width="@dimen/_3sdp" />
@@ -50,7 +47,7 @@
         android:textColor="#4CAF50"
         android:textSize="@dimen/_12ssp"/>
     <androidx.cardview.widget.CardView
-        android:id="@+id/buttonLogIn"
+        android:id="@+id/buttonLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="#9AE91E1E"

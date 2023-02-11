@@ -7,8 +7,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.clientapplication.Utils.LoadingDialog
 import com.example.clientapplication.databinding.ActivityStartEventBinding
-import com.example.clientapplication.pojo.MailMessage
+import com.example.clientapplication.pojo.RequestMessage
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.*
 import java.util.*
 import javax.mail.*
@@ -21,7 +22,15 @@ class StartEventActivity : AppCompatActivity() {
     private val loadingDialog: LoadingDialog by lazy {
         LoadingDialog(this)
     }
+
     private lateinit var auth: FirebaseAuth
+
+    private val fireStore: FirebaseFirestore by lazy {
+        FirebaseFirestore.getInstance()
+    }
+
+    val currentRequestsRef get() = fireStore.document("usersRequests/${auth.currentUser!!.uid}").collection("requests")
+
     lateinit var binding:ActivityStartEventBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,7 +69,7 @@ class StartEventActivity : AppCompatActivity() {
                 binding.editTextNumberOfDays.requestFocus()
                 return@setOnClickListener
             }
-            sendEmail(MailMessage(binding.editTextName.text.toString() , auth.currentUser?.email.toString() ,binding.textViewDate.text.toString() ,binding.editTextNumberOfDays.text.toString() ,binding.editTextBrief.text.toString() ,binding.editTextThreeDDesign.text.toString()?:"" ,binding.editTextDWG.text.toString()?:""))
+            sendEmail(RequestMessage(binding.editTextName.text.toString() , auth.currentUser?.email.toString() ,binding.textViewDate.text.toString() ,binding.editTextNumberOfDays.text.toString() ,binding.editTextBrief.text.toString() ,binding.editTextThreeDDesign.text.toString()?:"" ,binding.editTextDWG.text.toString()?:"" ,UUID.randomUUID().toString()))
         }
 
         binding.textViewDate.setOnClickListener {
@@ -79,10 +88,14 @@ class StartEventActivity : AppCompatActivity() {
             datePickerDialog.show()
         }
 
+        binding.buCancel.setOnClickListener {
+            finish()
+        }
+
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun sendEmail(mailMessage: MailMessage)
+    fun sendEmail(requestMessage: RequestMessage)
     {
         try {
         loadingDialog.show()
@@ -106,7 +119,7 @@ class StartEventActivity : AppCompatActivity() {
 
             mimeMessage.addRecipient(MimeMessage.RecipientType.TO, InternetAddress(stringReceiverEmail))
             mimeMessage.subject = "E9+ new event submission"
-            mimeMessage.setText("Email: ${mailMessage.email} \n Event name: ${mailMessage.eventName}\n Date: ${mailMessage.date} \n Number Of Days: ${mailMessage.numberDays} \n Event Brief: ${mailMessage.brief} \n 3D design link: ${mailMessage.threeDDesignLink} \n DWG link: ${mailMessage.dwgLink}")
+            mimeMessage.setText("Email: ${requestMessage.email} \n Event name: ${requestMessage.eventName}\n Date: ${requestMessage.date} \n Number Of Days: ${requestMessage.numberDays} \n Event Brief: ${requestMessage.brief} \n 3D design link: ${requestMessage.threeDDesignLink} \n DWG link: ${requestMessage.dwgLink}")
 
             GlobalScope.launch {
                 runBlocking {
@@ -115,8 +128,21 @@ class StartEventActivity : AppCompatActivity() {
                 runOnUiThread {
                     Toast.makeText(baseContext ,"The submission was successfully" ,Toast.LENGTH_SHORT).show()
                 }
-                loadingDialog.hide()
-                finish()
+                currentRequestsRef.document().set(requestMessage).addOnCompleteListener {
+                    if (it.isSuccessful)
+                    {
+                        loadingDialog.hide()
+                        finish()
+                    }
+                    else
+                    {
+                        runOnUiThread {
+                            Toast.makeText(baseContext ,"Something went wrong. Please try again." ,Toast.LENGTH_SHORT).show()
+                        }
+                        loadingDialog.hide()
+                        finish()
+                    }
+                }
             }
 
 

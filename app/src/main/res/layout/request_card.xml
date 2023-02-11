@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radius_background"
+    android:padding="@dimen/_5sdp"
+    android:layout_margin="@dimen/_5sdp"
+    android:backgroundTint="@color/yellow">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_copy"
+            />
+        <TextView
+            android:id="@+id/textViewUID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3545354456456"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_weight="1"
+            android:gravity="center"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event name : "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textViewName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-----------"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="start"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event date : "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-----------"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="start"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Number Of Days : "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textViewNumberOfDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-----------"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="start"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Event Brief : "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textViewBrief"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-----------"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="start"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DWG link : "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textViewDWGLinks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-----------"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="start"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3D design link : "
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/textViewThreeDDesignLink"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-----------"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/_13ssp"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:gravity="start"/>
+    </LinearLayout>
+</LinearLayout>
