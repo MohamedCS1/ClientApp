@@ -36,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
 
     val currentUserDocRef get() = fireStore.document("users/${auth.currentUser!!.uid}")
 
-    private val progressDialog: LoadingDialog by lazy {
+    private val loadingDialog: LoadingDialog by lazy {
         LoadingDialog(this)
     }
 
@@ -71,6 +71,8 @@ class LoginActivity : AppCompatActivity() {
         super.onResume()
     }
 
+
+
     fun logInWithEmailAndPassword()
     {
         val email = binding.editTextEmail.text.toString().trim()
@@ -94,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun logInWithEmailAndPassword(email: String, password: String) {
-        progressDialog.show()
+        loadingDialog.show()
         auth.signInWithEmailAndPassword(email ,password).addOnCompleteListener {
             if(it.isSuccessful)
             {
@@ -102,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
             }
             else
             {
-                progressDialog.hide()
+                loadingDialog.hide()
                 binding.textViewError.text = "${it.exception!!.message}"
                 binding.textViewError.visibility = View.VISIBLE
             }
@@ -129,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
                             {
                                 binding.textViewError.text = "Something went wrong. Please try again."
                                 binding.textViewError.visibility = View.VISIBLE
-                                progressDialog.hide()
+                                loadingDialog.hide()
                                 return@addOnCompleteListener
                             }
                             val token = task.result
@@ -139,11 +141,11 @@ class LoginActivity : AppCompatActivity() {
                                     {
                                         binding.textViewError.text = "Something went wrong. Please try again."
                                         binding.textViewError.visibility = View.VISIBLE
-                                        progressDialog.hide()
+                                        loadingDialog.hide()
                                     }
                                     else
                                     {
-                                        progressDialog.hide()
+                                        loadingDialog.hide()
                                         startActivity(Intent(this@LoginActivity ,MainActivity::class.java))
                                     }
                                 }
@@ -152,14 +154,14 @@ class LoginActivity : AppCompatActivity() {
                     }
                     else
                     {
-                        progressDialog.hide()
+                        loadingDialog.hide()
                         binding.textViewError.text = "Please check your email to verify it"
                         binding.textViewError.visibility = View.VISIBLE
                     }
                 }
                 else
                 {
-                    progressDialog.hide()
+                    loadingDialog.hide()
                     binding.textViewError.text = "Please check your internet"
                     binding.textViewError.visibility = View.VISIBLE
                 }

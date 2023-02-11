@@ -53,7 +53,7 @@
             android:layout_marginStart="@dimen/_2sdp"
             android:textColor="#3A3C3F"/>
         <TextView
-            android:id="@+id/TextViewDate"
+            android:id="@+id/textViewDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/radius_background"

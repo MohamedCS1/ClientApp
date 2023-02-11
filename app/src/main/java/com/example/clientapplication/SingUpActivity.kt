@@ -70,7 +70,7 @@ class SingUpActivity : AppCompatActivity() {
     fun createNewAccount(user: User)
     {
         progressDialog.show()
-        auth.createUserWithEmailAndPassword(user.email ,user.password).addOnCompleteListener(object :
+        auth.createUserWithEmailAndPassword(user.email ,user.password).addOnCompleteListener(object:
             OnCompleteListener<AuthResult> {
             override fun onComplete(task: Task<AuthResult>) {
                 if (task.isSuccessful)

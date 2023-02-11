@@ -1,10 +1,15 @@
 package com.example.clientapplication
 
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.DatePicker
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.clientapplication.Utils.LoadingDialog
 import com.example.clientapplication.databinding.ActivityStartEventBinding
 import com.example.clientapplication.pojo.MailMessage
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.*
 import java.util.*
 import javax.mail.*
 import javax.mail.internet.InternetAddress
@@ -13,6 +18,9 @@ import javax.mail.internet.MimeMessage
 
 class StartEventActivity : AppCompatActivity() {
 
+    private val loadingDialog: LoadingDialog by lazy {
+        LoadingDialog(this)
+    }
     private lateinit var auth: FirebaseAuth
     lateinit var binding:ActivityStartEventBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +30,7 @@ class StartEventActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+
         binding.buttonSubmit.setOnClickListener {
             if (binding.editTextName.text.isBlank())
             {
@@ -30,10 +39,10 @@ class StartEventActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (binding.TextViewDate.text == "MM/DD/YYYY")
+            if (binding.textViewDate.text.isBlank())
             {
-                binding.TextViewDate.error = "Date required"
-                binding.TextViewDate.requestFocus()
+                binding.textViewDate.error = "Date required"
+                binding.textViewDate.requestFocus()
                 return@setOnClickListener
             }
 
@@ -51,14 +60,32 @@ class StartEventActivity : AppCompatActivity() {
                 binding.editTextNumberOfDays.requestFocus()
                 return@setOnClickListener
             }
-            sendEmail(MailMessage(binding.editTextName.text.toString() ,
-                auth.currentUser?.email.toString() ,"02/15/2023" ,binding.editTextNumberOfDays.text.toString() ,binding.editTextBrief.text.toString() ,binding.editTextThreeDDesign.text.toString()?:"" ,binding.editTextDWG.text.toString()?:""))
+            sendEmail(MailMessage(binding.editTextName.text.toString() , auth.currentUser?.email.toString() ,binding.textViewDate.text.toString() ,binding.editTextNumberOfDays.text.toString() ,binding.editTextBrief.text.toString() ,binding.editTextThreeDDesign.text.toString()?:"" ,binding.editTextDWG.text.toString()?:""))
+        }
+
+        binding.textViewDate.setOnClickListener {
+            val calendar = Calendar.getInstance()
+            val year = calendar.get(Calendar.YEAR)
+            val month = calendar.get(Calendar.MONTH)
+            val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+
+            val datePickerDialog = DatePickerDialog(this ,object :DatePickerDialog.OnDateSetListener{
+                override fun onDateSet(view: DatePicker?, year: Int, month: Int, day: Int) {
+                    binding.textViewDate.text = "${month+1}/$day/$year"
+                }
+            } ,year ,month ,day)
+
+            datePickerDialog.show()
         }
 
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun sendEmail(mailMessage: MailMessage)
     {
+        try {
+        loadingDialog.show()
             val stringSenderEmail = "E9PlusDirector@gmail.com"
             val stringReceiverEmail = "mezmoh530@gmail.com"
             val stringPasswordSenderEmail = "qsphbshpkvgmnfto"
@@ -81,15 +108,23 @@ class StartEventActivity : AppCompatActivity() {
             mimeMessage.subject = "E9+ new event submission"
             mimeMessage.setText("Email: ${mailMessage.email} \n Event name: ${mailMessage.eventName}\n Date: ${mailMessage.date} \n Number Of Days: ${mailMessage.numberDays} \n Event Brief: ${mailMessage.brief} \n 3D design link: ${mailMessage.threeDDesignLink} \n DWG link: ${mailMessage.dwgLink}")
 
-            val thread = Thread {
+            GlobalScope.launch {
+                runBlocking {
                     Transport.send(mimeMessage)
+                }
+                runOnUiThread {
+                    Toast.makeText(baseContext ,"The submission was successfully" ,Toast.LENGTH_SHORT).show()
+                }
+                loadingDialog.hide()
+                finish()
             }
-            thread.start()
 
-        try {
 
         }catch (ex:Exception){
+            Toast.makeText(this ,"Something went wrong. Please try again." ,Toast.LENGTH_SHORT).show()
             ex.printStackTrace()
         }
     }
+
+
 }

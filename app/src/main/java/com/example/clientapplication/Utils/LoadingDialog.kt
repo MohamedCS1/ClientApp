@@ -32,4 +32,5 @@ class LoadingDialog(var context: Context) {
             loadingProgress.dismiss()
         }
     }
+
 }
