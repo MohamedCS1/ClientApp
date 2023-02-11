@@ -10,7 +10,7 @@ import com.example.clientapplication.pojo.RequestMessage
 
 class RequestsAdapter: RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>() {
 
-    val arrayRequests = arrayListOf<RequestMessage>()
+    var arrayRequests = arrayListOf<RequestMessage>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
         return RequestViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.request_card ,parent ,false))
@@ -38,5 +38,11 @@ class RequestsAdapter: RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>()
         val dwgLink = itemView.findViewById<TextView>(R.id.textViewDWGLinks)
         val threeDDesignLink = itemView.findViewById<TextView>(R.id.textViewThreeDDesignLink)
         val uid = itemView.findViewById<TextView>(R.id.textViewUID)
+    }
+
+    fun setList(arrayOfRequests:ArrayList<RequestMessage>)
+    {
+        this.arrayRequests = arrayOfRequests
+        notifyDataSetChanged()
     }
 }
