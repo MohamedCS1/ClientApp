@@ -1,18 +1,27 @@
 package com.example.clientapplication.adapters
 
+import android.R.attr.label
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clientapplication.R
 import com.example.clientapplication.pojo.RequestMessage
 
+
 class RequestsAdapter: RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>() {
 
     var arrayRequests = arrayListOf<RequestMessage>()
+    lateinit var context: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestViewHolder {
+        context = parent.context
         return RequestViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.request_card ,parent ,false))
     }
 
@@ -24,6 +33,12 @@ class RequestsAdapter: RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>()
         holder.dwgLink.text = arrayRequests[position].dwgLink
         holder.threeDDesignLink.text = arrayRequests[position].threeDDesignLink
         holder.uid.text = arrayRequests[position].uid
+        holder.buttonCopyUid.setOnClickListener {
+            val clipboard: ClipboardManager =
+                ContextCompat.getSystemService(context, ClipboardManager::class.java)!!
+            val clip = ClipData.newPlainText("label", arrayRequests[position].uid)
+            clipboard.setPrimaryClip(clip)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -38,6 +53,7 @@ class RequestsAdapter: RecyclerView.Adapter<RequestsAdapter.RequestViewHolder>()
         val dwgLink = itemView.findViewById<TextView>(R.id.textViewDWGLinks)
         val threeDDesignLink = itemView.findViewById<TextView>(R.id.textViewThreeDDesignLink)
         val uid = itemView.findViewById<TextView>(R.id.textViewUID)
+        val buttonCopyUid = itemView.findViewById<ImageView>(R.id.buttonCopyUID)
     }
 
     fun setList(arrayOfRequests:ArrayList<RequestMessage>)

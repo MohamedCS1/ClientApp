@@ -22,9 +22,6 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
-
-        Toast.makeText(this ,auth.currentUser?.displayName.toString() ,Toast.LENGTH_SHORT).show()
-
         val popUpMenu = PopupMenu(this ,binding.buttonMenu)
         popUpMenu.menu.add(Menu.NONE, 0, 0, "My account")
         popUpMenu.menu.add(Menu.NONE, 1, 1, "Start new event")
@@ -50,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(Intent(this@MainActivity ,PreviousRequestsActivity::class.java))
                     }
                     3->{
-
+                        startActivity(Intent(this@MainActivity ,ContactUsActivity::class.java))
                     }
                     4->{
                         startActivity(Intent(this@MainActivity ,AboutUsActivity::class.java))

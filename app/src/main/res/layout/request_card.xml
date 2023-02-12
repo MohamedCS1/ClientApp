@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/radius_background"
+    android:background="@drawable/card_request_background"
     android:padding="@dimen/_5sdp"
-    android:layout_margin="@dimen/_5sdp"
-    android:backgroundTint="@color/yellow">
+    android:layout_margin="@dimen/_5sdp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,10 +14,11 @@
         android:layout_margin="@dimen/_3sdp"
         android:gravity="center">
         <ImageView
+            android:id="@+id/buttonCopyUID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_copy"
-            />
+            app:tint="@color/black" />
         <TextView
             android:id="@+id/textViewUID"
             android:layout_width="wrap_content"
@@ -41,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event name : "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:gravity="center"/>
@@ -50,7 +51,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-----------"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:layout_weight="1"
@@ -69,7 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event date : "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:gravity="center"/>
@@ -78,7 +78,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-----------"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:layout_weight="1"
@@ -96,7 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Number Of Days : "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:gravity="center"/>
@@ -105,7 +104,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-----------"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:layout_weight="1"
@@ -124,7 +122,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event Brief : "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:gravity="center"/>
@@ -133,7 +131,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-----------"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:layout_weight="1"
@@ -151,7 +148,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DWG link : "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:gravity="center"/>
@@ -160,7 +157,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-----------"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:layout_weight="1"
@@ -179,7 +175,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3D design link : "
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:gravity="center"/>
@@ -188,7 +184,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="-----------"
-            android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="@dimen/_13ssp"
             android:layout_weight="1"
