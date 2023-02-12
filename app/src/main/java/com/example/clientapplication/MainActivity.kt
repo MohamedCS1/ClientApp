@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                         startActivity(Intent(this@MainActivity ,StartEventActivity::class.java))
                     }
                     2->{
-
+                        startActivity(Intent(this@MainActivity ,PreviousRequestsActivity::class.java))
                     }
                     3->{
 

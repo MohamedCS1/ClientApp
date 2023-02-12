@@ -32,6 +32,8 @@ class PreviousRequestsActivity : AppCompatActivity() {
         binding = ActivityPreviousRequestsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = FirebaseAuth.getInstance()
+
         requestsAdapter = RequestsAdapter()
 
         binding.recyclerViewRequests.adapter = requestsAdapter
